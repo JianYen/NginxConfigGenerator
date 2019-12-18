@@ -1,85 +1,31 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li>
-        <a
-          href="https://vuejs.org"
-          target="_blank"
-        >
-          Core Docs
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://forum.vuejs.org"
-          target="_blank"
-        >
-          Forum
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://chat.vuejs.org"
-          target="_blank"
-        >
-          Community Chat
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://twitter.com/vuejs"
-          target="_blank"
-        >
-          Twitter
-        </a>
-      </li>
-      <br>
-      <li>
-        <a
-          href="http://vuejs-templates.github.io/webpack/"
-          target="_blank"
-        >
-          Docs for This Template
-        </a>
-      </li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li>
-        <a
-          href="http://router.vuejs.org/"
-          target="_blank"
-        >
-          vue-router
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vuex.vuejs.org/"
-          target="_blank"
-        >
-          vuex
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vue-loader.vuejs.org/"
-          target="_blank"
-        >
-          vue-loader
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-        >
-          awesome-vue
-        </a>
-      </li>
-    </ul>
+    <div>
+      <b-card title="Card Title" no-body>
+        <b-card-header header-tag="nav">
+          <b-nav card-header tabs>
+            <b-nav-item v-bind:active="activeActive" @click="textShadows('Active')">Active</b-nav-item>
+            <b-nav-item v-bind:active="activeLink" @click="textShadows('Link')" >Link</b-nav-item>
+            <b-nav-item v-bind:active="activeAnother" @click="textShadows('Another')">Another Link</b-nav-item>
+            <b-nav-item v-bind:active="activedisabled" @click="textShadows('disabled')">"disabled</b-nav-item>
+          </b-nav>
+        </b-card-header>
+        <b-card-body class="text-center">
+          <b-card-text v-if="bar=='Active'">
+            Active
+          </b-card-text>
+          <b-card-text v-if="bar=='Link'">
+            Link
+          </b-card-text>
+          <b-card-text v-if="bar=='Another'">
+            Another.
+          </b-card-text>
+          <b-card-text v-if="bar=='disabled'">
+            disabled
+          </b-card-text>
+        </b-card-body>
+      </b-card>
+    </div>
   </div>
 </template>
 
@@ -88,26 +34,62 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      bar: 'Active',
+      activeActive: false,
+      activeLink: false,
+      activeAnother: false,
+      activedisabled: false
+    }
+  },
+  methods: {
+    textShadows (s) {
+      this.activeActive = false
+      this.activeLink = false
+      this.activeAnother = false
+      this.activedisabled = false
+      switch (s) {
+        case 'Active':
+          this.bar = 'Active'
+          this.activeActive = true
+          break
+        case 'Link':
+          this.bar = 'Link'
+          this.activeLink = true
+          break
+        case 'Another':
+          this.bar = 'Another'
+          this.activeAnother = true
+          break
+        case 'disabled':
+          this.bar = 'disabled'
+          this.activedisabled = true
+          break
+      }
     }
   }
+
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+  h3 {
+    margin: 40px 0 0;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  li {
+    display: inline-block;
+    margin: 0 10px;
+  }
+  a {
+    color: #42b983;
+  }
+  .card{
+    margin:0 auto;
+    width: 85%;
+    box-shadow: 3px 3px 9px #dbd9d9;
+  }
 </style>
