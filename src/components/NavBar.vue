@@ -3,19 +3,32 @@
     <div >
       <b-card title="Card Title" no-body>
         <b-card-header header-tag="nav">
-          <b-nav card-header tabs >
-            <b-nav-item v-bind:active="activeActive" @click="textShadows('Active')">Server</b-nav-item>
-            <b-nav-item v-bind:active="activeLink" @click="textShadows('Link')" >Https</b-nav-item>
-            <b-nav-item v-bind:active="activeAnother" @click="textShadows('Another')">Reverse Proxy</b-nav-item>
-          </b-nav>
+          <b-button-group size="lg">
+            <b-button v-bind:active="activeActive" @click="textShadows('Active')">Server</b-button>
+            <b-button v-bind:active="activeLink" @click="textShadows('Link')" >Https</b-button>
+            <b-button v-bind:active="activeAnother" @click="textShadows('Another')">Reverse Proxy</b-button>
+          </b-button-group>
         </b-card-header>
 
         <b-card-body class="text-center">
           <b-card-text v-if="bar=='Active'">
+
             <div  class="row server-content">
-              <div class="col-md-4 xxx">Domain</div>
-              <div class="col-md-4 xxx">Path</div>
-              <div class="col-md-4 xxx">Document root</div>
+              <div class="col-md-6 xxx">
+                <div class="row">
+                  <div class="col-md-4 xxx">
+                    <div>Domain</div>
+                    <div>Path</div>
+                    <div>Document root</div>
+                  </div>
+                  <div class="col-md-8 xxx">
+                    <input class="server-input" type="text" placeholder="example.com">
+                    <input class="server-input" type="text" placeholder="/var/www/example.com">
+                    <input class="server-input" type="text" placeholder="/public">
+                   </div>
+                  </div>
+                </div>
+              <div class="col-md-6 xxx">Domain</div>
             </div>
           </b-card-text>
           <b-card-text v-if="bar=='Link'">
@@ -95,4 +108,5 @@ export default {
   .xxx{
     text-align: left;
   }
+
 </style>
