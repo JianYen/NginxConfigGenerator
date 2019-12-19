@@ -7,12 +7,14 @@
 
 <script>
 import Vue from 'vue'
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from './components/NavBar.vue'
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false
+
 export default {
   name: 'app',
   components: {

@@ -12,7 +12,16 @@
         </b-card-header>
         <b-card-body class="text-center">
           <b-card-text v-if="bar=='Active'">
-            Active
+            <div>
+              <b-button variant="primary">Primary</b-button>
+              <b-button variant="secondary">Secondary</b-button>
+              <b-button variant="success">Success</b-button>
+              <b-button variant="danger">Danger</b-button>
+              <b-button variant="warning">Warning</b-button>
+            </div>
+            <div>
+              ssssssssssssssss
+            </div>
           </b-card-text>
           <b-card-text v-if="bar=='Link'">
             Link
@@ -35,7 +44,7 @@ export default {
   data () {
     return {
       bar: 'Active',
-      activeActive: false,
+      activeActive: true,
       activeLink: false,
       activeAnother: false,
       activedisabled: false
