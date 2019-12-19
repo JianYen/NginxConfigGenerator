@@ -1,26 +1,21 @@
 <template>
   <div class="hello">
-    <div>
+    <div >
       <b-card title="Card Title" no-body>
         <b-card-header header-tag="nav">
-          <b-nav card-header tabs>
-            <b-nav-item v-bind:active="activeActive" @click="textShadows('Active')">Active</b-nav-item>
-            <b-nav-item v-bind:active="activeLink" @click="textShadows('Link')" >Link</b-nav-item>
-            <b-nav-item v-bind:active="activeAnother" @click="textShadows('Another')">Another Link</b-nav-item>
-            <b-nav-item v-bind:active="activedisabled" @click="textShadows('disabled')">"disabled</b-nav-item>
+          <b-nav card-header tabs >
+            <b-nav-item v-bind:active="activeActive" @click="textShadows('Active')">Server</b-nav-item>
+            <b-nav-item v-bind:active="activeLink" @click="textShadows('Link')" >Https</b-nav-item>
+            <b-nav-item v-bind:active="activeAnother" @click="textShadows('Another')">Reverse Proxy</b-nav-item>
           </b-nav>
         </b-card-header>
+
         <b-card-body class="text-center">
           <b-card-text v-if="bar=='Active'">
-            <div>
-              <b-button variant="primary">Primary</b-button>
-              <b-button variant="secondary">Secondary</b-button>
-              <b-button variant="success">Success</b-button>
-              <b-button variant="danger">Danger</b-button>
-              <b-button variant="warning">Warning</b-button>
-            </div>
-            <div>
-              ssssssssssssssss
+            <div  class="row server-content">
+              <div class="col-md-4 xxx">Domain</div>
+              <div class="col-md-4 xxx">Path</div>
+              <div class="col-md-4 xxx">Document root</div>
             </div>
           </b-card-text>
           <b-card-text v-if="bar=='Link'">
@@ -55,7 +50,7 @@ export default {
       this.activeActive = false
       this.activeLink = false
       this.activeAnother = false
-      this.activedisabled = false
+
       switch (s) {
         case 'Active':
           this.bar = 'Active'
@@ -68,10 +63,6 @@ export default {
         case 'Another':
           this.bar = 'Another'
           this.activeAnother = true
-          break
-        case 'disabled':
-          this.bar = 'disabled'
-          this.activedisabled = true
           break
       }
     }
@@ -100,5 +91,8 @@ export default {
     margin:0 auto;
     width: 85%;
     box-shadow: 3px 3px 9px #dbd9d9;
+  }
+  .xxx{
+    text-align: left;
   }
 </style>
