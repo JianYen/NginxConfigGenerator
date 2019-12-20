@@ -18,17 +18,36 @@
                 <div class="row">
                   <div class="col-md-4 xxx">
                     <div>Domain</div>
-                    <div>Path</div>
-                    <div>Document root</div>
                   </div>
                   <div class="col-md-8 xxx">
                     <input class="server-input" type="text" placeholder="example.com">
-                    <input class="server-input" type="text" placeholder="/var/www/example.com">
-                    <input class="server-input" type="text" placeholder="/public">
                    </div>
                   </div>
+                <div class="row">
+                  <div class="col-md-4 xxx">
+                    <div>Path</div>
+                  </div>
+                  <div class="col-md-8 xxx">
+                    <input class="server-input" type="text" placeholder="/var/www/example.com">
+                  </div>
                 </div>
-              <div class="col-md-6 xxx">Domain</div>
+                <div class="row">
+                  <div class="col-md-4 xxx">
+                    <div>Document root</div>
+                  </div>
+                  <div class="col-md-8 xxx">
+                    <input class="server-input" type="text" placeholder="/public">
+                  </div>
+                </div>
+                </div>
+
+              <div class="col-md-6 xxx">Domain
+                <div>
+                  <input type="checkbox" id="checkbox-1"  v-model="serverChecked" @click="isServerChecked()">
+                   <label for="checkbox-1">I accept</label>
+                </div>
+              </div>
+
             </div>
           </b-card-text>
           <b-card-text v-if="bar=='Link'">
@@ -43,6 +62,38 @@
         </b-card-body>
       </b-card>
     </div>
+    <pre class="config-content">
+      worker_processes  1;
+
+      events {
+      worker_connections  1024;
+      }
+
+      http {
+      include       mime.types;
+      default_type  application/octet-stream;
+
+      #access_log  logs/access.log  main;
+
+      sendfile        on;
+
+      keepalive_timeout  65;
+
+      #gzip  on;
+      {{addServers}}
+      location / {
+      root   html;
+      index  index.html index.htm;
+      }
+
+      error_page   500 502 503 504  /50x.html;
+      location = /50x.html {
+      root   html;
+      }
+
+      }
+    </pre>
+
   </div>
 </template>
 
@@ -55,7 +106,13 @@ export default {
       activeActive: true,
       activeLink: false,
       activeAnother: false,
-      activedisabled: false
+      activedisabled: false,
+      addServer: '\n    server {\n' +
+        '      listen       80;\n' +
+        '      server_name  localhost;\n' +
+        '    }\n',
+      addServers: null,
+      serverChecked: false
     }
   },
   methods: {
@@ -77,6 +134,12 @@ export default {
           this.bar = 'Another'
           this.activeAnother = true
           break
+      }
+    },
+    isServerChecked () {
+      this.addServers = null
+      if (!this.serverChecked) {
+        this.addServers = this.addServer
       }
     }
   }
@@ -106,6 +169,11 @@ export default {
     box-shadow: 3px 3px 9px #dbd9d9;
   }
   .xxx{
+    text-align: left;
+  }
+  .config-content{
+    background-color: #f9f9f9;
+    box-shadow: 0 1px 1px rgba(0,0,0,.125);
     text-align: left;
   }
 
