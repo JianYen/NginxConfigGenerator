@@ -1,7 +1,24 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+
+    <div class="nav-bar">
+      <b-card title="Card Title" no-body>
+        <b-card-header header-tag="nav">
+          <b-button-group size="lg">
+            <b-button @click="add('Server')">Server</b-button>
+            <b-button @click="add('Https')">Https</b-button>
+            <b-button>Reverse Proxy</b-button>
+          </b-button-group>
+        </b-card-header>
+      </b-card>
+      <div class="button-content">
+        <keep-alive>
+          <router-view/>
+        </keep-alive>
+      </div>
+    </div>
+
     <pre class="config-content">
       worker_processes  1;
 
@@ -50,6 +67,11 @@ export default {
   name: 'app',
   components: {
     HelloWorld
+  },
+  methods: {
+    add (param) {
+      this.$router.push({name: param})
+    }
   }
 }
 </script>
@@ -62,5 +84,18 @@ export default {
     text-align: center;
     color: #2c3e50;
     margin-top: 60px;
+  }
+  .config-content{
+    background-color: #f9f9f9;
+    box-shadow: 0 1px 1px rgba(0,0,0,.125);
+    text-align: left;
+  }
+  .button-content{
+    width:80%;
+    margin: 20px 10% 20px 10%;
+  }
+  .nav-bar{
+    width: 90%;
+    margin: auto;
   }
 </style>

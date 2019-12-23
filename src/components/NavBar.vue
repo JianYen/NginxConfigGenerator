@@ -85,8 +85,8 @@ export default {
       activeAnother: false,
       activedisabled: false,
       serverInput: null,
-      addServer: a + 123,
-      addServers: 'ssss',
+      addServer: null,
+      addServers: null,
       serverChecked: false
     }
   },
@@ -115,7 +115,6 @@ export default {
       this.addServers = null
       if (!this.serverChecked) {
         this.addServers = this.addServer
-        alert('xxx')
       }
     }
   }
